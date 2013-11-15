@@ -1,10 +1,11 @@
+#Diseño de la práctica 9
 require "Practica9/version"
 
 module Practica9
 
 end
 
-
+#clase matriz
 class Matriz
   
    include Practica9
@@ -16,6 +17,7 @@ class Matriz
       @columnas = matriz[0].size
    end
    
+   #Imprime la matrices
    def to_s
       self.columnas.times do |i|   
       	self.filas.times do |j|
@@ -33,12 +35,13 @@ end
 
 
 
-
-
+#Clase de la matriz Dispersa
 class MatrizDispersa < Matriz
   	
   	attr_reader :hash_no_ceros
+
   	def initialize(matriz)
+  		#comprobamos que la matriz es dispersa o no
   		n_elementos= (matriz.size * matriz[0].size)*0.6 
   		@filas = matriz.size
       	@columnas = matriz[0].size
@@ -58,7 +61,17 @@ class MatrizDispersa < Matriz
   	end
   	
   	def to_s
-  	
+  		filas.times do |i|
+         columnas.times do |j|
+            if (hash_no_ceros.key?("#{i}#{j}"))
+               print hash_no_ceros["#{i}#{j}"]
+               print "  "
+            else
+               print "0  "
+            end
+         end
+         puts
+       end  	
   	end
 
   	def +(other)
